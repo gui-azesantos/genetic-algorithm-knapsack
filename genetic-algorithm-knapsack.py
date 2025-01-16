@@ -35,9 +35,9 @@ def initialize_population(population_size, num_items):
 
 # Tournament selection
 def tournament_selection(population, items, capacity):
-    tournament = random.sample(population, 3)  # Select 3 random individuals
-    tournament.sort(key=lambda x: fitness(x, items, capacity), reverse=True)  # Sort by fitness value
-    return tournament[0]  # Return the best individual
+    tournament = random.sample(population, 3) 
+    tournament.sort(key=lambda x: fitness(x, items, capacity), reverse=True)
+    return tournament[0]
 
 # 1-point crossover
 def crossover(parent1, parent2):
@@ -49,7 +49,7 @@ def crossover(parent1, parent2):
 def mutation(individual, mutation_rate=0.01):
     for i in range(len(individual)):
         if random.random() < mutation_rate:
-            individual[i] = 1 - individual[i]  # Flip the value (0 to 1 or 1 to 0)
+            individual[i] = 1 - individual[i] 
     return individual
 
 from openpyxl.styles import Font, Alignment
@@ -116,7 +116,7 @@ def genetic_algorithm(population_size, num_items, generations, mutation_rate, it
     for i, item in enumerate(items):
         print(f"Item {i + 1}: Weight = {item[0]}, Value = {item[1]}")
     print(f"Knapsack capacity: {capacity}")
-    print("-" * 50)  # Divider line for clarity
+    print("-" * 50) 
 
     while gen_count < generations: 
         gen_count += 1
@@ -151,17 +151,8 @@ def genetic_algorithm(population_size, num_items, generations, mutation_rate, it
 
 # Draw the plot using Pygame
 def draw_plot(screen: pygame.Surface, x: list, y: list, generation: int, fitness: int) -> None:
-    """
-    Draw a plot on a Pygame screen using Matplotlib.
-
-    Parameters:
-    - screen (pygame.Surface): The Pygame surface to draw the plot on.
-    - x (list): The x-axis values.
-    - y (list): The y-axis values.
-    - generation (int): Current generation number.
-    - fitness (int): Current fitness value.
-    """
-    fig, ax = plt.subplots(figsize=(5, 5), dpi=100)
+ 
+    fig, ax = plt.subplots(figsize=(6, 5), dpi=100)
     ax.plot(x, y)
     ax.set_ylabel('Fitness')
     ax.set_xlabel('Generation')
@@ -198,7 +189,7 @@ items, capacity = randomize_items_and_capacity(num_items, max_weight, max_value,
 # Algorithm parameters
 population_size = 20  # Population size
 generations = 300  # Maximum number of generations
-mutation_rate = 0.05  # Mutation rate
+mutation_rate = 0.02  # Mutation rate
 
 # Running the genetic algorithm
 genetic_algorithm(population_size, num_items, generations, mutation_rate, items, capacity, screen)
