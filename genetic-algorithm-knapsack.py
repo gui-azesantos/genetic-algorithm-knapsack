@@ -5,7 +5,8 @@ import pygame
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_agg import FigureCanvasAgg
 import openpyxl
-
+from openpyxl.styles import Font, Alignment
+from openpyxl.utils import get_column_letter
 
 matplotlib.use('Agg')  
 
@@ -51,10 +52,6 @@ def mutation(individual, mutation_rate=0.01):
         if random.random() < mutation_rate:
             individual[i] = 1 - individual[i] 
     return individual
-
-from openpyxl.styles import Font, Alignment
-from openpyxl.utils import get_column_letter
-import openpyxl
 
 def save_to_excel(items, capacity, best_fitness, best_generation, all_items, filename="genetic_algorithm_results.xlsx"):
     wb = openpyxl.Workbook()
@@ -183,7 +180,6 @@ max_weight = 10  # Maximum weight of an item
 max_value = 20  # Maximum value of an item
 max_capacity = 150  # Maximum capacity of the knapsack
 
-# Generate random items and knapsack capacity
 items, capacity = randomize_items_and_capacity(num_items, max_weight, max_value, max_capacity)
 
 # Algorithm parameters
@@ -191,8 +187,6 @@ population_size = 20  # Population size
 generations = 300  # Maximum number of generations
 mutation_rate = 0.02  # Mutation rate
 
-# Running the genetic algorithm
 genetic_algorithm(population_size, num_items, generations, mutation_rate, items, capacity, screen)
 
-# Close Pygame
 pygame.quit()
